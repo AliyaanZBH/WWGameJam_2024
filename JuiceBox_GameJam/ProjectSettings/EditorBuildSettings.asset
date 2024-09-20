@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GeorgeJam.unity
     guid: 91c1bbabc438a794cb85fff7f5c3b47d
+  - enabled: 1
+    path: Assets/GameoverScene.unity
+    guid: 3186b109856e7e249a67cc978c591bcd
   m_configObjects: {}
