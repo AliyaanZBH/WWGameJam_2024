@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-
-    struct MyGrid
+    [System.Serializable]
+    public struct MyGrid
     {
         public MyGrid(int x, int y) { this.x = x; this.y = y; this.cells = new List<MyCell>(); }
         public int x, y;
         public List<MyCell> cells;
     }
-    struct MyCell
+    public struct MyCell
     {
 
         public MyCell(GameObject obj, int x, int y) { this.fruit = obj; this.x = x; this.y = y; }
@@ -30,14 +30,19 @@ public class GridGenerator : MonoBehaviour
     private MyGrid grid;
 
 
-    [SerializeField] private int ROWS = 6;
-    [SerializeField] private int COLS = 6;
-
     [SerializeField] private List<GameObject> selectableFruit = new List<GameObject>();
 
     [SerializeField] private GameObject drawPoint;
 
     private bool bReset = false;
+
+    [SerializeField] private MyGrid grid;
+
+    [SerializeField] private List<GameObject> selectableFruit = new List<GameObject>();
+
+
+    // Public accessor to retrieve grid for player
+    public MyGrid GetGrid() { return grid; }
 
     // Generate a 6x6 grid of randomised fruit.
 
@@ -72,8 +77,8 @@ public class GridGenerator : MonoBehaviour
         // x x x x
 
         // Pick a random fruit within the internal 5x5 grid.
-        int startX = UnityEngine.Random.Range(0, ROWS - 1);
-        int startY = UnityEngine.Random.Range(0, COLS - 1);
+        int startX = UnityEngine.Random.Range(0, grid.x - 1);
+        int startY = UnityEngine.Random.Range(0, grid.y - 1);
 
         // Collect the 2x2 block of fruit based on the starting point and direction.
         //List<GameObject> selectedFruits = new List<GameObject>();
@@ -125,11 +130,11 @@ public class GridGenerator : MonoBehaviour
 
     public void GenerateGrid()
     {
-        grid = new MyGrid(0, 0);
+        grid = new MyGrid(6,6 );
 
-        for (int x = 0; x < ROWS; x++)
+        for (int x = 0; x < grid.x; x++)
         {
-            for (int y = 0; y < COLS; y++)
+            for (int y = 0; y < grid.y; y++)
             {
                 // Pick a random fruit.
                 GameObject fruit = selectableFruit[UnityEngine.Random.Range(0, selectableFruit.Count)];
