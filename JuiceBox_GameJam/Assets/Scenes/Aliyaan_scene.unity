@@ -151,9 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839d40b397193d640a9d895ec132a3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  grid: {fileID: 1708185687}
+  player1: {fileID: 970031061}
+  player2: {fileID: 1984331999}
+  player1Correct: 0
+  player2Correct: 0
 --- !u!4 &202658485
 Transform:
   m_ObjectHideFlags: 0
@@ -293,6 +295,8 @@ MonoBehaviour:
   grid: {fileID: 1708185687}
   player1: {fileID: 970031061}
   player2: {fileID: 1984331999}
+  player1Correct: 0
+  player2Correct: 0
 --- !u!4 &797191993
 Transform:
   m_ObjectHideFlags: 0
