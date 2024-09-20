@@ -7,13 +7,13 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     [System.Serializable]
-    struct MyGrid
+    public struct MyGrid
     {
         public MyGrid(int x, int y) { this.x = x; this.y = y; this.cells = new List<MyCell>(); }
         public int x, y;
         public List<MyCell> cells;
     }
-    struct MyCell
+    public struct MyCell
     {
 
         public MyCell(GameObject obj, int x, int y) { this.fruit = obj; this.x = x; this.y = y; }
@@ -25,6 +25,10 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] private MyGrid grid;
 
     [SerializeField] private List<GameObject> selectableFruit = new List<GameObject>();
+
+
+    // Public accessor to retrieve grid for player
+    public MyGrid GetGrid() { return grid; }
 
     // Generate a 6x6 grid of randomised fruit.
 
