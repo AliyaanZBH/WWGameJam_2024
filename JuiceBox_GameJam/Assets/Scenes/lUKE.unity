@@ -243,8 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13168d85e3df7954eae84e4c602eda00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ROWS: 6
-  COLS: 6
+  grid:
+    x: 6
+    y: 6
   selectableFruit:
   - {fileID: 9054748107695728486, guid: 88c511cadc6d098479ea7c99cd6346a8, type: 3}
   - {fileID: 2687679931508957147, guid: 5fadbd0175f43fe41b19dec1ada534c9, type: 3}
