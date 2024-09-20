@@ -27,10 +27,8 @@ public class GridGenerator : MonoBehaviour
         MyGrid answerGrid;
     }
 
-    private MyGrid grid;
 
 
-    [SerializeField] private List<GameObject> selectableFruit = new List<GameObject>();
 
     [SerializeField] private GameObject drawPoint;
 
