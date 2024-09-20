@@ -9,9 +9,17 @@ public class GridGenerator : MonoBehaviour
 
     struct MyGrid
     {
-        public MyGrid(int x, int y) { this.x = x; this.y = y; this.fruit = new GameObject(); }
+        public MyGrid(int x, int y) { this.x = x; this.y = y; this.cells = new List<MyCell>(); }
         public int x, y;
+        public List<MyCell> cells;
+    }
+    struct MyCell
+    {
+
+        public MyCell(GameObject obj, int x, int y) { this.fruit = obj; this.x = x; this.y = y; }
+
         public GameObject fruit;
+        public int x, y;
     }
 
     private MyGrid grid;
@@ -54,50 +62,58 @@ public class GridGenerator : MonoBehaviour
         int startX = UnityEngine.Random.Range(0, ROWS - 1);
         int startY = UnityEngine.Random.Range(0, COLS - 1);
 
-        // Define the possible directions to complete the 2x2 square.
-        Vector2Int[] directions = new Vector2Int[]
-        {
-            new Vector2Int(0, 1),  // Right
-            new Vector2Int(1, 0),  // Down
-            new Vector2Int(1, 1),  // Diagonal Down-Right
-            new Vector2Int(1, -1)  // Diagonal Down-Left
-        };
-
-        // Pick a random direction.
-        Vector2Int direction = directions[UnityEngine.Random.Range(0, directions.Length)];
-
         // Collect the 2x2 block of fruit based on the starting point and direction.
         List<GameObject> selectedFruits = new List<GameObject>();
 
         // Add the starting fruit.
-        //grid = new MyGrid(startX, startY);
-        grid.x = startX;
-        grid.y = startY;
-        selectedFruits.Add(grid.fruit);
 
-        // Add the other fruits to form the 2x2 block.
-        grid.x = startX + direction.x;
-        grid.y = startY+ direction.y;
-        selectedFruits.Add(grid.fruit);
+        // Get the fruit from the list of cells from the start x and y.
 
-        grid.x = startX + 1;
-        grid.y = startY;
-        selectedFruits.Add(grid.fruit);
-
-        grid.x = startX + direction.x;
-        grid.y = startY + direction.y;
-        selectedFruits.Add(grid.fruit);
-
-        // Log the selected 2x2 fruits.
-        Debug.Log("Random 2x2 fruit selected for this round:");
-        foreach (GameObject _fruit in selectedFruits)
+        // Bottom left
+        for (int i = 0; i < grid.cells.Count; i++)
         {
-            Debug.Log(_fruit.name);
+            if (grid.cells[i].x == startX && grid.cells[i].y == startY)
+            {
+                Debug.Log("First fruit: " + grid.cells[i].fruit.name + " " + grid.cells[i].x + ", " + grid.cells[i].y);
+                selectedFruits.Add(grid.cells[i].fruit);
+            }
+        }
+
+        // top right
+        for (int i = 0; i < grid.cells.Count; i++)
+        {
+            if (grid.cells[i].x == startX + 1 && grid.cells[i].y == startY + 1)
+            {
+                Debug.Log("Second fruit: " + grid.cells[i].fruit.name + " " + grid.cells[i].x + ", " + grid.cells[i].y);
+                selectedFruits.Add(grid.cells[i].fruit);
+            }
+        }
+
+        // top left
+        for (int i = 0; i < grid.cells.Count; i++)
+        {
+            if (grid.cells[i].x == startX && grid.cells[i].y == startY + 1)
+            {
+                Debug.Log("Third fruit: " + grid.cells[i].fruit.name + " " + grid.cells[i].x + ", " + grid.cells[i].y);
+                selectedFruits.Add(grid.cells[i].fruit);
+            }
+        }
+
+        // bottom right 
+        for (int i = 0; i < grid.cells.Count; i++)
+        {
+            if (grid.cells[i].x == startX + 1 && grid.cells[i].y == startY)
+            {
+                Debug.Log("Last fruit: " + grid.cells[i].fruit.name + " " + grid.cells[i].x + ", " + grid.cells[i].y);
+                selectedFruits.Add(grid.cells[i].fruit);
+            }
         }
     }
 
     void Start()
     {
+        grid = new MyGrid(0,0 );
+
         for (int x = 0; x < ROWS; x++)
         {
             for (int y = 0; y < COLS; y++)
@@ -107,9 +123,8 @@ public class GridGenerator : MonoBehaviour
                 fruit.transform.position = new Vector3(x, y, 0);
                 GameObject obj = Instantiate(fruit);
 
-                grid.fruit = obj;
-                grid.x = x;
-                grid.y = y;
+                grid.cells.Add(new MyCell(obj,x,y));
+
             }
         }
 
