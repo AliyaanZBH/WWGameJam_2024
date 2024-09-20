@@ -22,17 +22,30 @@ public class GridGenerator : MonoBehaviour
         public int x, y;
     }
 
+    struct Answer
+    {
+        MyGrid answerGrid;
+    }
+
     private MyGrid grid;
+
 
     [SerializeField] private int ROWS = 6;
     [SerializeField] private int COLS = 6;
 
     [SerializeField] private List<GameObject> selectableFruit = new List<GameObject>();
 
+    [SerializeField] private GameObject drawPoint;
+
+    private bool bReset = false;
+
     // Generate a 6x6 grid of randomised fruit.
 
-    void Pick2x2()
-    {
+    List<GameObject> previous = new List<GameObject>();
+    List<GameObject> selectedFruits = new List<GameObject>();
+
+    void Pick2x2(ref List<GameObject> selectedFruits)
+    { 
 
         // Pick a random fruit within the internal 5x5 (of a 6x6 grid)
         // Pick a random direction to create a square
@@ -63,7 +76,7 @@ public class GridGenerator : MonoBehaviour
         int startY = UnityEngine.Random.Range(0, COLS - 1);
 
         // Collect the 2x2 block of fruit based on the starting point and direction.
-        List<GameObject> selectedFruits = new List<GameObject>();
+        //List<GameObject> selectedFruits = new List<GameObject>();
 
         // Add the starting fruit.
 
@@ -110,9 +123,9 @@ public class GridGenerator : MonoBehaviour
         }
     }
 
-    void Start()
+    public void GenerateGrid()
     {
-        grid = new MyGrid(0,0 );
+        grid = new MyGrid(0, 0);
 
         for (int x = 0; x < ROWS; x++)
         {
@@ -123,13 +136,72 @@ public class GridGenerator : MonoBehaviour
                 fruit.transform.position = new Vector3(x, y, 0);
                 GameObject obj = Instantiate(fruit);
 
-                grid.cells.Add(new MyCell(obj,x,y));
+                grid.cells.Add(new MyCell(obj, x, y));
 
             }
         }
 
+
         // Pick a random 2x2 of fruit for the round.
-        Pick2x2();
+        Pick2x2(ref selectedFruits);
+
+        for (int j = 0; j < selectedFruits.Count; j++)
+        {
+            GameObject fruit = new GameObject();
+            fruit.AddComponent<SpriteRenderer>();
+            fruit.GetComponent<SpriteRenderer>().sprite = selectedFruits[j].GetComponent<SpriteRenderer>().sprite;
+
+            // Wants to be in this order coz the fruits in selectedFruits were added this way.
+            // 1. bottom left / 2. top right / 3. top left / 4. bottom right
+            if (j == 0) fruit.transform.position = new Vector3(drawPoint.transform.position.x, drawPoint.transform.position.y, 0);               // First fruit 
+            else if (j == 1) fruit.transform.position = new Vector3(drawPoint.transform.position.x + 1, drawPoint.transform.position.y + 1, 0);  // Second fruit 
+            else if (j == 2) fruit.transform.position = new Vector3(drawPoint.transform.position.x, drawPoint.transform.position.y + 1, 0);      // Third fruit 
+            else if (j == 3) fruit.transform.position = new Vector3(drawPoint.transform.position.x + 1, drawPoint.transform.position.y, 0);      // Last fruit 
+
+            fruit.name = "THIS IS A DEBUG FRUIT" + selectedFruits[j].name;
+            previous.Add(fruit);
+        }
+    }
+
+    void ResetGrid()
+    {
+
+        Debug.Log("Clear");
+
+
+        // Reset previous answer
+        for (int i = 0; i < selectedFruits.Count; i++)
+        {
+            Destroy(selectedFruits[i]);
+            Destroy(previous[i]);
+        }
+        selectedFruits.Clear();
+        previous.Clear();
+        //selectedFruits = new List<GameObject>();
+
+        for (int i = 0; i < grid.cells.Count; i++)
+        {
+            Destroy(grid.cells[i].fruit);
+        }
+
+        grid.cells.Clear();
+        grid = new MyGrid(0, 0);
+    }
+
+
+    void Start()
+    {
+        GenerateGrid();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ResetGrid();
+
+            GenerateGrid();
+        }
     }
 }
 
