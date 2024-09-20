@@ -44,8 +44,8 @@ public class GridGenerator : MonoBehaviour
 
     // Generate a 6x6 grid of randomised fruit.
 
-    List<GameObject> previous = new List<GameObject>();
-    List<GameObject> selectedFruits = new List<GameObject>();
+    public List<GameObject> previousAnswer = new List<GameObject>();
+    public List<GameObject> selectedFruits = new List<GameObject>();
 
     void Pick2x2(ref List<GameObject> selectedFruits)
     { 
@@ -162,7 +162,7 @@ public class GridGenerator : MonoBehaviour
             else if (j == 3) fruit.transform.position = new Vector3(drawPoint.transform.position.x + 1, drawPoint.transform.position.y, 0);      // Last fruit 
 
             fruit.name = "THIS IS A DEBUG FRUIT" + selectedFruits[j].name;
-            previous.Add(fruit);
+            previousAnswer.Add(fruit);
         }
     }
 
@@ -176,11 +176,10 @@ public class GridGenerator : MonoBehaviour
         for (int i = 0; i < selectedFruits.Count; i++)
         {
             Destroy(selectedFruits[i]);
-            Destroy(previous[i]);
+            Destroy(previousAnswer[i]);
         }
         selectedFruits.Clear();
-        previous.Clear();
-        //selectedFruits = new List<GameObject>();
+        previousAnswer.Clear();
 
         for (int i = 0; i < grid.cells.Count; i++)
         {
