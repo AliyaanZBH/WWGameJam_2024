@@ -23,23 +23,36 @@ public class DrawRoundAnswer : MonoBehaviour
         // in order bottom left, top right, top left bottom right
         List<GameObject> answer = gridGen.previousAnswer;
 
-        // bottom left, top left
-        if (player1Answer[0] == answer[0] && player1Answer[1] == answer[2])
+        if (player1Answer.Count != 0 && player2Answer.Count != 0)
         {
-            Debug.Log("Player1 is correct\n");
-            player1Correct = true;
-        }
 
-        // bottom right, top right
-        if (player2Answer[0] == answer[3] && player2Answer[1] == answer[1])
-        {
-            Debug.Log("Player2 is correct\n");
-            player2Correct = true;
-        }
+            // bottom left, top left
+            if (player1Answer[0].GetComponent<SpriteRenderer>().sprite == answer[0].GetComponent<SpriteRenderer>().sprite && player1Answer[1].GetComponent<SpriteRenderer>().sprite == answer[2].GetComponent<SpriteRenderer>().sprite)
+            {
+                Debug.Log("Player1 is correct\n");
+                player1Correct = true;
+            }
 
-        if (player1Correct && player2Correct)
-        {
-            Debug.Log("Win round\n");
+            // bottom right, top right
+            if (player2Answer[0].GetComponent<SpriteRenderer>().sprite == answer[3].GetComponent<SpriteRenderer>().sprite && player2Answer[1].GetComponent<SpriteRenderer>().sprite == answer[1].GetComponent<SpriteRenderer>().sprite)
+            {
+                Debug.Log("Player2 is correct\n");
+                player2Correct = true;
+            }
+
+            if (player1Correct && player2Correct)
+            {
+                Debug.Log("Win round\n");
+                gridGen.ResetGrid();
+                gridGen.GenerateGrid();
+
+                answer.Clear();
+                player1Answer.Clear();
+                player2Answer.Clear();
+                player1Correct = false;
+                player2Correct = false;
+
+            }
         }
     }
 }

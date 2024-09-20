@@ -23,14 +23,22 @@ public class Puzzle_Controller : MonoBehaviour
     private Vector3 newPos;
 
     // Adjusted value to account for scale of player rect
-    private int adjustedGridPos;
+    private int adjustedGridPosX;
+    private int adjustedGridPosY;
+
+    public List<GameObject> Answer;
 
     // Start is called before the first frame update
     void Start()
     {
         trans = GetComponent<Transform>();
         gridGen = gridObject.GetComponent<GridGenerator>();
+
+        Answer = new List<GameObject>();
     }
+
+
+    public  List<GameObject> GetAnswer() { return Answer; }
 
     // Update is called once per frame
     void Update()
@@ -42,8 +50,8 @@ public class Puzzle_Controller : MonoBehaviour
             {
                 // Check we aren't moving outside the grid
                 // Adjust by 1.5 as the rect is 2 units tall on Y-Axis, but in order to sit at the start of the grid it also needs to be adjust by .5
-                adjustedGridPos = (int)(trans.position.y + 1.5f);
-                if (adjustedGridPos < gridGen.GetGrid().y)
+                adjustedGridPosY = (int)(trans.position.y + 1.5f);
+                if (adjustedGridPosY < gridGen.GetGrid().y)
                     newPos = new Vector3(0, movementDistance, 0);
                 else
                     return;
@@ -51,8 +59,8 @@ public class Puzzle_Controller : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                adjustedGridPos = (int)(trans.position.y - 0.5f);
-                if (adjustedGridPos > 0)
+                adjustedGridPosY = (int)(trans.position.y - 0.5f);
+                if (adjustedGridPosY > 0)
                     newPos = new Vector3(0, -movementDistance, 0);
                 else
                     return;
@@ -83,7 +91,40 @@ public class Puzzle_Controller : MonoBehaviour
             }
 
 
-            // Check puzzle answer
+            // Generate puzzle answer
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Answer.Clear();
+
+
+                adjustedGridPosY = (int) (trans.position.y - 0.5f);
+                // Find out where we are on the grid
+                // Use adjusted value for Y coordinate, can use actual trans value for X
+                for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
+                {
+                    // Find the bottom cell that matches our current position
+                    if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY)
+                    {
+                        // Add the bottom fruit
+                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                    }
+                }
+                // Repeat for fruit above
+                for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
+                {
+                    // Find the bottom cell that matches our current position
+                    if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY + 1)
+                    {
+                        // Add the next fruit
+                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                    }
+                }
+
+                //GameObject tmp = Answer[0];
+                //Answer[0] = Answer[1];
+                //Answer[1]  = tmp; ;
+            }
         }
         
         // Repeat for player 2
@@ -91,8 +132,8 @@ public class Puzzle_Controller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                adjustedGridPos = (int)(trans.position.y + 1.5f);
-                if (adjustedGridPos < gridGen.GetGrid().y)
+                adjustedGridPosY = (int)(trans.position.y + 1.5f);
+                if (adjustedGridPosY < gridGen.GetGrid().y)
                     newPos = new Vector3(0, movementDistance, 0);
                 else
                     return;
@@ -100,8 +141,8 @@ public class Puzzle_Controller : MonoBehaviour
 
             else if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-                adjustedGridPos = (int)(trans.position.y - 0.5f);
-                if (adjustedGridPos > 0)
+                adjustedGridPosY = (int)(trans.position.y - 0.5f);
+                if (adjustedGridPosY > 0)
                     newPos = new Vector3(0, -movementDistance, 0);
                 else
                     return;
@@ -126,6 +167,39 @@ public class Puzzle_Controller : MonoBehaviour
             else
             {
                 newPos = new Vector3(0, 0, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Answer.Clear();
+
+                adjustedGridPosY = (int)(trans.position.y - 0.5f);
+
+                // Find out where we are on the grid
+                // Use adjusted value for Y coordinate, can use actual trans value for X
+                for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
+                {
+                    // Find the bottom cell that matches our current position
+                    if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY)
+                    {
+                        // Add the bottom fruit
+                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                    }
+                }
+                // Repeat for fruit above
+                for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
+                {
+                    // Find the bottom cell that matches our current position
+                    if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY + 1)
+                    {
+                        // Add the next fruit
+                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                    }
+                }
+
+                //GameObject tmp = Answer[0];
+                //Answer[0] = Answer[1];
+                //Answer[1] = tmp; ;
             }
         }
         

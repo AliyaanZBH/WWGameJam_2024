@@ -166,7 +166,7 @@ public class GridGenerator : MonoBehaviour
         }
     }
 
-    void ResetGrid()
+   public void ResetGrid()
     {
 
         Debug.Log("Clear");
@@ -198,12 +198,12 @@ public class GridGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ResetGrid();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    ResetGrid();
 
-            GenerateGrid();
-        }
+        //    GenerateGrid();
+        //}
     }
 }
 
