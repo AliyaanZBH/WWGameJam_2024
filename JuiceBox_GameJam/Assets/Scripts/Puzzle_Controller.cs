@@ -22,7 +22,7 @@ public class Puzzle_Controller : MonoBehaviour
     // Vector direction to move the player along the grid
     private Vector3 newPos;
 
-    // Adjusted value to account for scale of player rect
+    // Adjusted value to account for scale of player rect, giving us a clearer grid position when determining answer
     private int adjustedGridPosX;
     private int adjustedGridPosY;
 
@@ -113,7 +113,7 @@ public class Puzzle_Controller : MonoBehaviour
                 // Repeat for fruit above
                 for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
                 {
-                    // Find the bottom cell that matches our current position
+                    // Find cell directly above the last one by simply adding 1 to the adjustedPos variable
                     if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY + 1)
                     {
                         // Add the next fruit
