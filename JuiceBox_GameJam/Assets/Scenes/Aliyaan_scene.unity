@@ -154,6 +154,8 @@ MonoBehaviour:
   grid: {fileID: 1708185687}
   player1: {fileID: 970031061}
   player2: {fileID: 1984331999}
+  difficultyMultiplier: 0.9
+  baseTime: 10
   player1Correct: 0
   player2Correct: 0
 --- !u!4 &202658485
@@ -536,6 +538,8 @@ MonoBehaviour:
   grid: {fileID: 1708185687}
   player1: {fileID: 970031061}
   player2: {fileID: 1984331999}
+  difficultyMultiplier: 0.9
+  baseTime: 10
   player1Correct: 0
   player2Correct: 0
 --- !u!4 &797191993
@@ -975,8 +979,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -467.00043, y: 0}
-  m_SizeDelta: {x: -934.0009, y: 45.12}
+  m_AnchoredPosition: {x: -402.93958, y: 0}
+  m_SizeDelta: {x: -805.8791, y: 45.512}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1981903446
 MonoBehaviour:
