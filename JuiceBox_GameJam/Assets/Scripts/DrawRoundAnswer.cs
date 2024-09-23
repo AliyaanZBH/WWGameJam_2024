@@ -52,6 +52,9 @@ public class DrawRoundAnswer : MonoBehaviour
                 player1Correct = false;
                 player2Correct = false;
 
+                RoundTimer.timer = 10;
+                ScoreManager.IncreaseScore();
+
             }
         }
     }

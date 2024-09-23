@@ -120,10 +120,6 @@ public class Puzzle_Controller : MonoBehaviour
                         Answer.Add(gridGen.GetGrid().cells[i].fruit);
                     }
                 }
-
-                //GameObject tmp = Answer[0];
-                //Answer[0] = Answer[1];
-                //Answer[1]  = tmp; ;
             }
         }
         
@@ -196,10 +192,6 @@ public class Puzzle_Controller : MonoBehaviour
                         Answer.Add(gridGen.GetGrid().cells[i].fruit);
                     }
                 }
-
-                //GameObject tmp = Answer[0];
-                //Answer[0] = Answer[1];
-                //Answer[1] = tmp; ;
             }
         }
         
