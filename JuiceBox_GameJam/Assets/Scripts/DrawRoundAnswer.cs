@@ -204,6 +204,11 @@ public class DrawRoundAnswer : MonoBehaviour
                 RoundTimer.timer = baseTime * difficultyMultiplier;
                 GameScoreManager.IncreaseScore();
 
+                // Reset input lock
+                player1Controller.UnlockAnswer();
+                player2Controller.UnlockAnswer();
+
+
             }
         }
     }

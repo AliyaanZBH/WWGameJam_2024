@@ -55,7 +55,12 @@ public class Puzzle_Controller : MonoBehaviour
 
     public  List<EMyFruit> GetAnswer() { return Answer; }
 
-
+    // To be called from the answer manager to release the lock and also change the color
+    public void UnlockAnswer()
+    {
+        bAnswerLocked = false;
+        spr.color = BaseColour;
+    }
     // Input actions
 
     void IA_MoveUp()
@@ -133,8 +138,7 @@ public class Puzzle_Controller : MonoBehaviour
         {
             // Reset answer aswell
             Answer.Clear();
-            bAnswerLocked = false;
-            spr.color = BaseColour;
+            UnlockAnswer();
         }
     }
 
