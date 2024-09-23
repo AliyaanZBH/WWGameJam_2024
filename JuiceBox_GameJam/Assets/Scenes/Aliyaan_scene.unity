@@ -391,6 +391,38 @@ PrefabInstance:
       propertyPath: gridObject
       value: 
       objectReference: {fileID: 1708185687}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: BaseColour.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: BaseColour.b
+      value: 0.0010178135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: BaseColour.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: BaseColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: SubmittedColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: SubmittedColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: SubmittedColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553994452231746362, guid: 7979f72e99157cb449791b09d3900393, type: 3}
+      propertyPath: SubmittedColour.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7625024843373855207, guid: 7979f72e99157cb449791b09d3900393, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.69
@@ -488,9 +520,53 @@ PrefabInstance:
       propertyPath: gridObject
       value: 
       objectReference: {fileID: 1708185687}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: BaseColour.a
+      value: 0.78039217
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: BaseColour.b
+      value: 0.018498132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: BaseColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: BaseColour.r
+      value: 0.85882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: SubmittedColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: SubmittedColour.b
+      value: 0.02702713
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: SubmittedColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806798334416403150, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: SubmittedColour.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6244157676930461556, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581197069375168512, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: m_Color.b
+      value: 0.018630981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581197069375168512, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581197069375168512, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8538700196867246174, guid: 26a2f21154819854d9d7184b784396ea, type: 3}
       propertyPath: m_LocalPosition.x
