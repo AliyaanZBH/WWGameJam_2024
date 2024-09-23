@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
+using static DrawRoundAnswer;
+using static GridGenerator;
 
 public class Puzzle_Controller : MonoBehaviour
 {
@@ -22,27 +25,36 @@ public class Puzzle_Controller : MonoBehaviour
     // Vector direction to move the player along the grid
     private Vector3 newPos;
 
-    // Adjusted value to account for scale of player rect
+    // Adjusted value to account for scale of player rect, giving us a clearer grid position when determining answer
     private int adjustedGridPosX;
     private int adjustedGridPosY;
 
-    public List<GameObject> Answer;
+    public List<EMyFruit> Answer;
 
     // Start is called before the first frame update
     void Start()
     {
         trans = GetComponent<Transform>();
+
+        // Wait until the grid becomes valied
+        Assert.IsNotNull(gridObject);
         gridGen = gridObject.GetComponent<GridGenerator>();
 
-        Answer = new List<GameObject>();
+        Answer = new List<EMyFruit>();
     }
 
 
-    public  List<GameObject> GetAnswer() { return Answer; }
+    public  List<EMyFruit> GetAnswer() { return Answer; }
 
     // Update is called once per frame
     void Update()
     {
+
+        // Refresh gridObject incase we didn't get it at the start
+        if (gridGen == null)
+        {
+            gridGen = gridObject.GetComponent<GridGenerator>();
+        }
 
         if (player == 1)
         {
@@ -107,19 +119,21 @@ public class Puzzle_Controller : MonoBehaviour
                     if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY)
                     {
                         // Add the bottom fruit
-                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                        Answer.Add(gridGen.GetGrid().cells[i].name);
                     }
                 }
                 // Repeat for fruit above
                 for (int i = 0; i < gridGen.GetGrid().cells.Count; i++)
                 {
-                    // Find the bottom cell that matches our current position
+                    // Find cell directly above the last one by simply adding 1 to the adjustedPos variable
                     if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY + 1)
                     {
                         // Add the next fruit
-                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                        Answer.Add(gridGen.GetGrid().cells[i].name);
                     }
                 }
+
+                Debug.Log("Player 1 answer: " + Answer[0] + ", " + Answer[1]);
             }
         }
         
@@ -179,7 +193,7 @@ public class Puzzle_Controller : MonoBehaviour
                     if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY)
                     {
                         // Add the bottom fruit
-                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                        Answer.Add(gridGen.GetGrid().cells[i].name);
                     }
                 }
                 // Repeat for fruit above
@@ -189,12 +203,14 @@ public class Puzzle_Controller : MonoBehaviour
                     if (gridGen.GetGrid().cells[i].x == trans.position.x && gridGen.GetGrid().cells[i].y == adjustedGridPosY + 1)
                     {
                         // Add the next fruit
-                        Answer.Add(gridGen.GetGrid().cells[i].fruit);
+                        Answer.Add(gridGen.GetGrid().cells[i].name);
                     }
                 }
+
+                Debug.Log("Player 2 answer: " + Answer[0] + ", " + Answer[1]);
             }
-        }
-        
+        }   
+
         // Update position
         trans.position += newPos;
 
