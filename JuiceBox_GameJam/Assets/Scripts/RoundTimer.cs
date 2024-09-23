@@ -8,6 +8,15 @@ public class RoundTimer : MonoBehaviour
 {
     public static float timer = 10;
     [SerializeField] public Text timerText;
+
+
+    private AudioSource aux;
+
+
+    private void Start()
+    {
+        aux = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if (timer > 0) //time above 0
@@ -18,9 +27,19 @@ public class RoundTimer : MonoBehaviour
 
         else if (timer <= 0) //time at zero, game over
         {
-            // add function to end game or crash it idk, prob just stop movement and add text on screen
-            SceneManager.LoadScene("GameOver");
+            // Play Gameover sound and wait
+            StartCoroutine(WaitForSoundAndGameover(aux.clip));
+
         }
+
+    }
+
+    private IEnumerator WaitForSoundAndGameover(AudioClip clip)
+    {
+        aux.Play();
+        yield return new WaitUntil(() => aux.time >= clip.length);
+        // Load new scene after sound
+        SceneManager.LoadScene("GameOver");
 
     }
 }
