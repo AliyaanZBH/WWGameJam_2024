@@ -10,5 +10,10 @@ public class TitleScreen : MonoBehaviour
             SceneManager.LoadScene("Game");
             RoundTimer.timer = 10; // reset
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
