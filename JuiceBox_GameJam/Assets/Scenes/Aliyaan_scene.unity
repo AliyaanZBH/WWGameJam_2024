@@ -151,11 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839d40b397193d640a9d895ec132a3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1708185687}
+  gridObject: {fileID: 1708185687}
   player1: {fileID: 970031061}
   player2: {fileID: 1984331999}
-  player1Correct: 0
-  player2Correct: 0
+  drawPoint: {fileID: 561736835}
 --- !u!4 &202658485
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +262,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &561736835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561736836}
+  m_Layer: 0
+  m_Name: DrawPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &561736836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561736835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.47, y: 1.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797191991
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,11 +322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839d40b397193d640a9d895ec132a3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1708185687}
+  gridObject: {fileID: 0}
   player1: {fileID: 970031061}
   player2: {fileID: 1984331999}
-  player1Correct: 0
-  player2Correct: 0
+  drawPoint: {fileID: 0}
 --- !u!4 &797191993
 Transform:
   m_ObjectHideFlags: 0
@@ -528,3 +557,4 @@ SceneRoots:
   - {fileID: 4794102149405287461}
   - {fileID: 202658485}
   - {fileID: 797191993}
+  - {fileID: 561736836}

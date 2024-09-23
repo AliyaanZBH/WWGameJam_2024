@@ -13,16 +13,28 @@ public class GridGenerator : MonoBehaviour
         public int x, y;
         public List<MyCell> cells;
     }
+
+    [System.Serializable]
+    public enum EMyFruit
+    {
+        STRAWBERRY = 0,
+        BANANA = 1,
+        GRAPE = 2,
+        GRAPEFRUIT = 3,
+        BLUEBERRY = 4,
+        WATERMELON = 5,
+        FRUIT_COUNT = 6
+    }
+
     public struct MyCell
     {
 
-        public MyCell(GameObject obj, int x, int y) { this.fruit = obj; this.x = x; this.y = y; }
+        public MyCell(GameObject obj, int x, int y, EMyFruit name) { this.fruit = obj; this.x = x; this.y = y; this.name = name; }
 
         public GameObject fruit;
+        public EMyFruit name;
         public int x, y;
     }
-
-    [SerializeField] private GameObject drawPoint;
 
     [SerializeField] private MyGrid grid;
 
@@ -43,10 +55,51 @@ public class GridGenerator : MonoBehaviour
             {
                 // Pick a random fruit.
                 GameObject fruit = selectableFruit[UnityEngine.Random.Range(0, selectableFruit.Count)];
+                // Work out which fruit it is so that we can work out an answer later
+                EMyFruit frName = 0;
+                switch (fruit.name)
+                {
+                    case "Strawberry":
+                    {
+                        frName = EMyFruit.STRAWBERRY;
+                        break; 
+                    }     
+                    
+                    case "Blueberry":
+                    {
+                        frName = EMyFruit.BLUEBERRY;
+                        break; 
+                    }
+
+                    case "Banana":
+                    {
+                        frName = EMyFruit.BANANA;
+                        break;
+                    }   
+                    
+                    case "Grape":
+                    {
+                        frName = EMyFruit.GRAPE;
+                        break;
+                    }   
+                    
+                    case "Grapefruit":
+                    {
+                        frName = EMyFruit.GRAPEFRUIT;
+                        break;
+                    }    
+                    
+                    case "Watermelon":
+                    {
+                        frName = EMyFruit.WATERMELON;
+                        break;
+                    }
+                }
+
                 fruit.transform.position = new Vector3(x, y, 0);
                 GameObject obj = Instantiate(fruit);
 
-                grid.cells.Add(new MyCell(obj, x, y));
+                grid.cells.Add(new MyCell(obj, x, y, frName));
 
             }
         }
@@ -55,17 +108,8 @@ public class GridGenerator : MonoBehaviour
    public void ResetGrid()
     {
 
-        Debug.Log("Clear");
+        Debug.Log("Clear Grid");
 
-
-        // Reset previous answer
-        for (int i = 0; i < selectedFruits.Count; i++)
-        {
-            Destroy(selectedFruits[i]);
-            Destroy(previousAnswer[i]);
-        }
-        selectedFruits.Clear();
-        previousAnswer.Clear();
 
         for (int i = 0; i < grid.cells.Count; i++)
         {
