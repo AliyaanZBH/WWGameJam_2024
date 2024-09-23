@@ -19,7 +19,7 @@ public class DrawRoundAnswer : MonoBehaviour
     private AudioSource aux;
 
     [SerializeField] private float difficultyMultiplier = 0.9f;
-    private float baseTime = 7;
+    private float baseTime = 27;
 
     private bool player1Correct = false, player2Correct = false;
 

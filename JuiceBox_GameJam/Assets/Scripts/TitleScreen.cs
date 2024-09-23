@@ -8,7 +8,7 @@ public class TitleScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             SceneManager.LoadScene("Game");
-            RoundTimer.timer = 10; // reset
+            RoundTimer.timer = 30; // reset
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

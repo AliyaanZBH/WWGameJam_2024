@@ -1,20 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoundTimer : MonoBehaviour
 {
-    public static float timer = 10;
+    public static float timer = 30;
     [SerializeField] public Text timerText;
 
+    public static float baseTime = 30;
 
     private AudioSource aux;
 
 
     private void Start()
     {
+        timer = baseTime;
         aux = GetComponent<AudioSource>();
     }
     void Update()
