@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using static DrawRoundAnswer;
 using static GridGenerator;
@@ -36,8 +37,8 @@ public class Puzzle_Controller : MonoBehaviour
         trans = GetComponent<Transform>();
 
         // Wait until the grid becomes valied
-        if (gridObject != null)
-            gridGen = gridObject.GetComponent<GridGenerator>();
+        Assert.IsNotNull(gridObject);
+        gridGen = gridObject.GetComponent<GridGenerator>();
 
         Answer = new List<EMyFruit>();
     }
@@ -205,6 +206,8 @@ public class Puzzle_Controller : MonoBehaviour
                         Answer.Add(gridGen.GetGrid().cells[i].name);
                     }
                 }
+
+                Debug.Log("Player 2 answer: " + Answer[0] + ", " + Answer[1]);
             }
         }   
 

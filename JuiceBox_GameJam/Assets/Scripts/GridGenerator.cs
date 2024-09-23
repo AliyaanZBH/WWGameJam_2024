@@ -47,8 +47,6 @@ public class GridGenerator : MonoBehaviour
 
     public void GenerateGrid()
     {
-        grid = new MyGrid(6,6 );
-
         for (int x = 0; x < grid.x; x++)
         {
             for (int y = 0; y < grid.y; y++)
@@ -122,6 +120,7 @@ public class GridGenerator : MonoBehaviour
 
     void Start()
     {
+        grid = new MyGrid(6, 6);
         GenerateGrid();
     }
 

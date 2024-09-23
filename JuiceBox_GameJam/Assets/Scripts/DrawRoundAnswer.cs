@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Assertions;
 using static GridGenerator;
 
 public class DrawRoundAnswer : MonoBehaviour
 {
-    [SerializeField] private GameObject gridObject = null;
+    [SerializeField] private GameObject gridObject;
     private GridGenerator gridClass;
     private MyGrid grid;
 
@@ -31,6 +32,9 @@ public class DrawRoundAnswer : MonoBehaviour
     public List<AnswerCell> displayedAnswer = new List<AnswerCell>();
     public List<AnswerCell> selectedAnswer = new List<AnswerCell>();
 
+    public List<EMyFruit> player1Answer = new List<EMyFruit>();
+    public List<EMyFruit> player2Answer = new List<EMyFruit>();
+
     private bool bNewRound = true;
 
 
@@ -38,11 +42,9 @@ public class DrawRoundAnswer : MonoBehaviour
     private void Start()
     {
         // Grab our grid
-        if (gridObject != null)
-        {
-            gridClass = gridObject.GetComponent<GridGenerator>();
-            grid = gridClass.GetGrid();
-        }
+        Assert.IsNotNull(gridObject);
+        gridClass = gridObject.GetComponent<GridGenerator>();
+        grid = gridClass.GetGrid();
     }
 
 
@@ -132,8 +134,8 @@ public class DrawRoundAnswer : MonoBehaviour
         Puzzle_Controller player1Controller = player1.GetComponent<Puzzle_Controller>();
         Puzzle_Controller player2Controller = player2.GetComponent<Puzzle_Controller>();
 
-        List<EMyFruit> player1Answer = player1Controller.GetAnswer();
-        List<EMyFruit> player2Answer = player2Controller.GetAnswer();
+        player1Answer = player1Controller.GetAnswer();
+        player2Answer = player2Controller.GetAnswer();
 
 
         // Create an answer that the players have to find
@@ -150,9 +152,7 @@ public class DrawRoundAnswer : MonoBehaviour
                 // Draw the new fruit in the answer location, based on the fruit we selected from the grid
                 for (int j = 0; j < selectedAnswer.Count; j++)
                 {
-                    GameObject fruit = new GameObject();
-                    fruit.AddComponent<SpriteRenderer>();
-                    fruit.GetComponent<SpriteRenderer>().sprite = selectedAnswer[j].obj.GetComponent<SpriteRenderer>().sprite;
+                    GameObject fruit = Instantiate(selectedAnswer[j].obj);
 
                     // Wants to be in this order coz the fruits in selectedAnswer were added this way.
                     // 1. bottom left / 2. top right / 3. top left / 4. bottom right
@@ -194,12 +194,11 @@ public class DrawRoundAnswer : MonoBehaviour
                 gridClass.GenerateGrid();
 
                 // Reset values
-                displayedAnswer.Clear();
-                player1Answer.Clear();
-                player2Answer.Clear();
+                ResetAnswer();
+
+                // Reset flags
                 player1Correct = false;
                 player2Correct = false;
-
                 bNewRound = true;
 
             }
@@ -218,5 +217,11 @@ public class DrawRoundAnswer : MonoBehaviour
         }
         selectedAnswer.Clear();
         displayedAnswer.Clear();
+
+        // Clear player submitted answers
+        player1Answer.Clear();
+        player2Answer.Clear();
+
+
     }
 }
