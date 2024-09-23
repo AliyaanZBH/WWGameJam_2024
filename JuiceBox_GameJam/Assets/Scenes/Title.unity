@@ -1690,7 +1690,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press ECS to not play...
+  m_Text: Press ESC to not play...
 --- !u!222 &2012598009
 CanvasRenderer:
   m_ObjectHideFlags: 0
