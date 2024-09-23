@@ -10,11 +10,14 @@ public class GameScoreManager : MonoBehaviour
 
     // Static variable to store the score between scenes
     public static int score = 0;
+    public static int highscore = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+
+        highscore = PlayerPrefs.GetInt("highscore");
 
         scoreText = GetComponentInChildren<Text>();
 
@@ -28,5 +31,14 @@ public class GameScoreManager : MonoBehaviour
     {
         score++;  // Increase the static score
         scoreText.text = score.ToString();  // Update the score display
+    }
+
+    public static void Save()
+    {
+        if (score > highscore)
+        {
+            highscore = score;
+            PlayerPrefs.SetInt("highscore", highscore);
+        }
     }
 }

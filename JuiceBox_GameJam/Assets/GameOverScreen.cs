@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameOverScreen : MonoBehaviour
     private void Start()
     {
         scoreText.text = "Final score: " + GameScoreManager.score.ToString();
+
+        GameScoreManager.Save();
     }
 
     void Update()

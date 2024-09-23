@@ -15,7 +15,7 @@ public class DrawRoundAnswer : MonoBehaviour
     [SerializeField] private GameObject player2;
 
     [SerializeField] private float difficultyMultiplier = 0.9f;
-    [SerializeField] private float baseTime = 10;
+    private float baseTime = 7;
 
     private bool player1Correct = false, player2Correct = false;
 
@@ -201,7 +201,9 @@ public class DrawRoundAnswer : MonoBehaviour
                 player2Correct = false;
                 bNewRound = true;
 
-                RoundTimer.timer = baseTime * difficultyMultiplier;
+                baseTime *= difficultyMultiplier;
+                RoundTimer.timer = 3 + baseTime;
+
                 GameScoreManager.IncreaseScore();
 
             }
