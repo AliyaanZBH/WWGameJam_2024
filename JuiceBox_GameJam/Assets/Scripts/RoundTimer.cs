@@ -28,7 +28,9 @@ public class RoundTimer : MonoBehaviour
         else if (timer <= 0) //time at zero, game over
         {
             // Play Gameover sound and wait
-            StartCoroutine(WaitForSoundAndGameover(aux.clip));
+            SceneManager.LoadScene("GameOver");
+
+            //StartCoroutine(WaitForSoundAndGameover(aux.clip));
 
         }
 
