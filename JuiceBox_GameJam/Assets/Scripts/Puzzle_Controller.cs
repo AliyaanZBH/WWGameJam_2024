@@ -18,6 +18,8 @@ public class Puzzle_Controller : MonoBehaviour
     [SerializeField] private Color BaseColour;
     [SerializeField] private Color SubmittedColour;
 
+    [SerializeField] private List<AudioClip> Sounds;
+
     // Get the game grid
     [SerializeField] GameObject gridObject;
     private GridGenerator gridGen;
@@ -27,6 +29,9 @@ public class Puzzle_Controller : MonoBehaviour
 
     // Player sprite
     private SpriteRenderer spr;
+
+    // Audio Source
+    private AudioSource aux;
 
     // Vector direction to move the player along the grid
     private Vector3 newPos;
@@ -42,8 +47,11 @@ public class Puzzle_Controller : MonoBehaviour
     void Start()
     {
         trans = GetComponent<Transform>();
+        aux = GetComponent<AudioSource>();
         spr = GetComponent<SpriteRenderer>();
         spr.color = BaseColour;
+
+
 
         // Wait until the grid becomes valied
         Assert.IsNotNull(gridObject);
@@ -72,6 +80,9 @@ public class Puzzle_Controller : MonoBehaviour
             newPos = new Vector3(0, movementDistance, 0);
         else
             return;
+
+        // Ensure Move sound is at index 0
+        aux.PlayOneShot(Sounds[0]);
     }
 
     void IA_MoveDown()
@@ -81,6 +92,7 @@ public class Puzzle_Controller : MonoBehaviour
             newPos = new Vector3(0, -movementDistance, 0);
         else
             return;
+        aux.PlayOneShot(Sounds[0]);
     }
 
     void IA_MoveLeft()
@@ -90,6 +102,7 @@ public class Puzzle_Controller : MonoBehaviour
             newPos = new Vector3(-movementDistance, 0, 0);
         else
             return;
+        aux.PlayOneShot(Sounds[0]);
     }
     void IA_MoveRight()
     {
@@ -97,6 +110,7 @@ public class Puzzle_Controller : MonoBehaviour
             newPos = new Vector3(movementDistance, 0, 0);
         else
             return;
+        aux.PlayOneShot(Sounds[0]);
     }
 
     void IA_SubmitAnswer()
@@ -133,12 +147,18 @@ public class Puzzle_Controller : MonoBehaviour
             // Change player sprite colour to indicate the change to them
             spr.color = SubmittedColour;
 
+            // Play sound
+            aux.PlayOneShot(Sounds[1]);
+
+
         }
         else // Un-lock the players input if there is still time left
         {
             // Reset answer aswell
             Answer.Clear();
             UnlockAnswer();
+            aux.PlayOneShot(Sounds[2]);
+
         }
     }
 
