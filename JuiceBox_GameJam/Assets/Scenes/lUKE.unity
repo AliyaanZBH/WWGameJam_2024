@@ -214,6 +214,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &365616670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365616671}
+  m_Layer: 0
+  m_Name: DrawPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &365616671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365616670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.03, y: 2.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1804829227
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +258,7 @@ GameObject:
   m_Layer: 0
   m_Name: GridGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -252,6 +283,7 @@ MonoBehaviour:
   - {fileID: 1308397193931685633, guid: bde36d817abf3a846b9871efe34e9648, type: 3}
   - {fileID: 4674705567415863178, guid: 79074e0b57696fa4cb08e24040b10e37, type: 3}
   - {fileID: 2329107236888402674, guid: 2cfef86fbc9469b4fb068d79baeda981, type: 3}
+  drawPoint: {fileID: 365616670}
 --- !u!4 &1804829229
 Transform:
   m_ObjectHideFlags: 0
@@ -273,3 +305,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 126877653}
   - {fileID: 1804829229}
+  - {fileID: 365616671}
