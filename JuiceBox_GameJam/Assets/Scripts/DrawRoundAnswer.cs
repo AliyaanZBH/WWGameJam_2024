@@ -14,6 +14,10 @@ public class DrawRoundAnswer : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
+
+    [SerializeField] private List<AudioClip> sounds;
+    private AudioSource aux;
+
     [SerializeField] private float difficultyMultiplier = 0.9f;
     private float baseTime = 7;
 
@@ -46,6 +50,8 @@ public class DrawRoundAnswer : MonoBehaviour
         Assert.IsNotNull(gridObject);
         gridClass = gridObject.GetComponent<GridGenerator>();
         grid = gridClass.GetGrid();
+
+        aux = GetComponent<AudioSource>();
     }
 
 
@@ -205,6 +211,9 @@ public class DrawRoundAnswer : MonoBehaviour
                 RoundTimer.timer = 3 + baseTime;
 
                 GameScoreManager.IncreaseScore();
+
+                // Play sound
+                aux.PlayOneShot(sounds[0]);
 
                 // Reset input lock
                 player1Controller.UnlockAnswer();
