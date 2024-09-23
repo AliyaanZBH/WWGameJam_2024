@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class GameScoreManager : MonoBehaviour
 {
     // Reference to the Text GameObject
     public static Text scoreText;

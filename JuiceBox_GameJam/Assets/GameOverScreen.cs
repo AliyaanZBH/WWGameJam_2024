@@ -8,7 +8,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void Start()
     {
-        scoreText.text = "Final score: " + ScoreManager.score.ToString();
+        scoreText.text = "Final score: " + GameScoreManager.score.ToString();
     }
 
     void Update()

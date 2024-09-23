@@ -202,7 +202,7 @@ public class DrawRoundAnswer : MonoBehaviour
                 bNewRound = true;
 
                 RoundTimer.timer = baseTime * difficultyMultiplier;
-                ScoreManager.IncreaseScore();
+                GameScoreManager.IncreaseScore();
 
             }
         }
