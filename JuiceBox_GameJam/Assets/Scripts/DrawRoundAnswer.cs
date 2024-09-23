@@ -14,6 +14,9 @@ public class DrawRoundAnswer : MonoBehaviour
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 
+    [SerializeField] private float difficultyMultiplier = 0.9f;
+    [SerializeField] private float baseTime = 10;
+
     private bool player1Correct = false, player2Correct = false;
 
     // What makes up an answer? We need a cell with an objects and a name
@@ -36,8 +39,6 @@ public class DrawRoundAnswer : MonoBehaviour
     public List<EMyFruit> player2Answer = new List<EMyFruit>();
 
     private bool bNewRound = true;
-
-
 
     private void Start()
     {
@@ -128,7 +129,6 @@ public class DrawRoundAnswer : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         Puzzle_Controller player1Controller = player1.GetComponent<Puzzle_Controller>();
@@ -200,6 +200,9 @@ public class DrawRoundAnswer : MonoBehaviour
                 player1Correct = false;
                 player2Correct = false;
                 bNewRound = true;
+
+                RoundTimer.timer = baseTime * difficultyMultiplier;
+                GameScoreManager.IncreaseScore();
 
             }
         }

@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 67e2d65c657455646a0846121b1bed38
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: ed32c183e4e4c6d469d1526d4330f593
+  - enabled: 1
     path: Assets/Scenes/Aliyaan_scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/start screen.unity
-    guid: 3603cda4b1617f24585eeae7ad3f273b
-  - enabled: 1
-    path: Assets/GeorgeJam.unity
-    guid: 91c1bbabc438a794cb85fff7f5c3b47d
-  - enabled: 1
-    path: Assets/GameoverScene.unity
-    guid: 3186b109856e7e249a67cc978c591bcd
+    path: Assets/Scenes/GameOver.unity
+    guid: 4ca2011985bd56742b428358ede6bbfb
   m_configObjects: {}
